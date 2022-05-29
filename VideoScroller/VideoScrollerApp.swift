@@ -25,7 +25,7 @@ struct VideoScroller: View {
         "https://storage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4"
     ]
 
-    @State private var lastPositionMap: [URL: TimeInterval] = [:]
+    @State private var lastPositionMap: [AnyHashable: TimeInterval] = [:]
 
     var body: some View {
         ScrollView(.vertical, showsIndicators: true) {
@@ -48,7 +48,7 @@ struct VideoScroller: View {
 struct VideoView: View {
     @State private var player = AVPlayer()
 
-    @Binding var lastPositionMap: [URL: TimeInterval]
+    @Binding var lastPositionMap: [AnyHashable: TimeInterval]
 
     private let videoURL: URL
     private var timeStateSubscriber: Any?
@@ -57,7 +57,7 @@ struct VideoView: View {
 
     init(
         videoURL: URL,
-        lastPositionMap: Binding<[URL: TimeInterval]>
+        lastPositionMap: Binding<[AnyHashable: TimeInterval]>
     ) {
         self.videoURL = videoURL
         self._lastPositionMap = lastPositionMap

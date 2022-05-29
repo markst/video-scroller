@@ -47,6 +47,7 @@ struct VideoScroller: View {
 
 struct VideoView: View {
     @State private var player = AVPlayer()
+    @State private var isViewDisplayed = false
 
     @Binding var lastPositionMap: [AnyHashable: TimeInterval]
 
@@ -76,15 +77,19 @@ struct VideoView: View {
             onVideoCompleted: { },
             onVideoError: { }
         )
+        /*
         .onReceive(playOnReadyPublisher(), perform: { [weak player] asset in
-            debugPrint("Video isPlayable: \(asset.isPlayable)")
+            guard isViewDisplayed else { debugPrint("view no longer visible"); return }
             player?.replaceCurrentItem(with: .init(asset: asset))
             player?.play()
         })
+         */
         .onAppear(perform: {
-            // playOnReadyAsynchronously()
+            isViewDisplayed = true
+            playOnReadyAsynchronously()
         })
         .onDisappear {
+            isViewDisplayed = false
             player.pause()
             player.currentItem?.asset.cancelLoading()
         }
@@ -111,6 +116,7 @@ private extension VideoView {
             switch status {
             case .loaded:
                 DispatchQueue.main.async { [weak player] in
+                    guard isViewDisplayed else { debugPrint("view no longer visible"); return }
                     guard let player = player else { return }
                     player.replaceCurrentItem(with: .init(asset: asset))
 

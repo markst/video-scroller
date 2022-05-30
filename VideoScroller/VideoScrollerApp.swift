@@ -93,6 +93,10 @@ struct VideoView: View {
             player.pause()
             player.currentItem?.asset.cancelLoading()
         }
+        .onTapGesture {
+            player.seek(to: .zero)
+            player.play()
+        }
     }
 }
 

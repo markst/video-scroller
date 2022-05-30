@@ -13,16 +13,16 @@ struct VideoScrollerApp: App {
 
 struct VideoScroller: View {
     static let videos = [
-        "https://storage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
-        "https://storage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
-        "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
-        "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
-        "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
-        "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
-        "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4",
-        "https://storage.googleapis.com/gtv-videos-bucket/sample/Sintel.jpg",
-        "https://storage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackOnStreetAndDirt.mp4",
-        "https://storage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4"
+        "https://www.sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4",
+        "https://www.sample-videos.com/video123/mp4/720/big_buck_bunny_720p_2mb.mp4",
+        "https://www.sample-videos.com/video123/mp4/720/big_buck_bunny_720p_5mb.mp4",
+        "https://www.sample-videos.com/video123/mp4/720/big_buck_bunny_720p_10mb.mp4",
+        "https://www.sample-videos.com/video123/mp4/720/big_buck_bunny_720p_20mb.mp4",
+        "https://www.sample-videos.com/video123/mp4/720/big_buck_bunny_720p_30mb.mp4",
+        "https://www.sample-videos.com/video123/mp4/480/big_buck_bunny_480p_1mb.mp4",
+        "https://www.sample-videos.com/video123/mp4/480/big_buck_bunny_480p_2mb.mp4",
+        "https://www.sample-videos.com/video123/mp4/480/big_buck_bunny_480p_5mb.mp4",
+        "https://www.sample-videos.com/video123/mp4/480/big_buck_bunny_480p_10mb.mp4"
     ]
 
     @State private var lastPositionMap: [AnyHashable: TimeInterval] = [:]
@@ -106,7 +106,6 @@ private extension VideoView {
      */
     func playOnReadyAsynchronously() {
         let keys = [
-            #keyPath(AVAsset.duration),
             #keyPath(AVAsset.isPlayable)
         ]
 
